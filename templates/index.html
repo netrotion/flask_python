@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>webkey_by_netrotion2808</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff6666, #ff66b2, #cc66ff, #6699ff, #66cc66, #b2b200, #ffcc66);
+            background-size: 600% 600%;
+            animation: gradientAnimation 10s ease infinite;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .box {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 10px;
+        }
+
+        .box p {
+            color: white;
+            user-select: text; /* Cho phép chọn và sao chép nội dung */
+        }
+
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+
+        .copy-notification {
+            display: none;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+            <p>{{ text_function() }}</p>
+            <button class="copy-btn" onclick="copyText()">Nhấn vào đây để sao chép key</button>
+            <div class="copy-notification" id="copyNotification">Đã Copy</div>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div style="margin-top: 20px; color: green;">
+                    {{ messages[0] }}
+                </div>
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <script>
+        function copyText() {
+            var copyText = document.querySelector('.box p');
+            var copyNotification = document.getElementById('copyNotification');
+
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.textContent;
+            document.body.appendChild(textArea);
+
+            textArea.select();
+            document.execCommand('copy');
+            
+            document.body.removeChild(textArea);
+
+            copyNotification.style.display = 'block';
+            setTimeout(function() {
+                copyNotification.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

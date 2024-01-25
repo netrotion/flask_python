@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff6666, #ff66b2, #cc66ff, #6699ff, #66cc66, #b2b200, #ffcc66);
+            background-size: 600% 600%;
+            animation: gradientAnimation 10s ease infinite;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @keyframes gradientAnimation {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .white-box-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            width: 98%;
+            height: 90%;
+        }
+
+        .white-box {
+            max-width: 900px;
+            width: 100%;
+            height: auto;
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .white-box h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        .white-box h1 + h1 {
+            font-size: 16px;
+            color: #ffcc66;
+            font-weight: bold;
+        }
+        .white-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+            transition: transform 0.3s ease; /* Thêm hiệu ứng chuyển động */
+        }
+
+        .avatar:hover {
+            transform: scale(1.1);
+          }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links a {
+            margin: 0 10px;
+            color: #8a2be2;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .links a:hover {
+            color: #ffcc66;
+        }
+
+        .copyright {
+            position: absolute;
+            bottom: 0px;
+            font-size: 10px;
+            color: #c0c0c0;
+        }
+    </style>
+</head>
+<body>
+    <div class="white-box-container">
+        <div class="white-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4ckUQZA5NmgJhLQ8zU6xI-AiwJ20SMa7m5w&usqp=CAU" alt="Avatar" class="avatar">
+            <h1>Lê Việt Hùng</h1>
+            <h1>A junior programmer with some algorithmic and Python skills</h1>
+            
+            <div class="links">
+                <p>Facebook: <a href="https://www.facebook.com/profile.php?id=100054423332132&mibextid=ZbWKwL">Chuyển hướng</a></p>
+                <p>Youtube: <a href="https://youtube.com/@rtech2808?si=a3nIT708NUeto9oc">Chuyển hướng</a></p>
+                <p>Box zalo: <a href="https://zalo.me/g/ypxzsf596">Chuyển hướng</a></p>
+                <p>Tool mới nhất tại đây: <a href="https://zalo.me/g/ypxzsf596">Chuyển hướng</a></p>
+                <p>Mua key vip tại đây: <a href="hnglshop/key">Chuyển hướng</a></p>
+            </div>
+            
+            <a class="copyright">© Leviethung 2024-2025. All Rights Reserved.</a>
+        </div>
+    </div>
+</body>
+</html>

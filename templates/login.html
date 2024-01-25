@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rainbow Background</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(45deg, #3498db, #e74c3c, #2ecc71);
+            background-size: 400% 400%;
+            animation: rainbowAnimation 10s infinite linear;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sử dụng một font chữ nổi bật và thịnh hành */
+        }
+
+        @keyframes rainbowAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .whitebox {
+            background: white;
+            padding: 20px;
+            border-radius: 10px; /* Góc bo tròn */
+            text-align: center;
+            width: 300px;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        input {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Góc bo tròn */
+            box-sizing: border-box;
+            display: inline-block;
+            font-family: inherit; /* Kế thừa font chữ từ thẻ cha */
+        }
+
+        .show-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 14px;
+            color: rgba(51, 51, 51, 0.7); /* Màu mờ chút */
+            text-decoration: underline;
+            transition: color 0.3s ease-in-out;
+            font-family: inherit; /* Kế thừa font chữ từ thẻ cha */
+        }
+
+        .show-password:hover {
+            color: rgba(51, 51, 51, 1); /* Màu khi hover */
+        }
+
+        .register-link {
+            font-size: 12px;
+            color: #555;
+            margin-top: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="whitebox">
+        <!-- Nội dung trang đăng nhập ở đây -->
+        <h2>Đăng nhập</h2>
+        <form id="loginForm" method="POST" onsubmit="submitForm(event)">
+            <div class="input-group">
+                <input type="text" id="username" name="username" placeholder="Tên đăng nhập" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+                <span class="show-password" onclick="togglePasswordVisibility()">Hiện</span>
+            </div>
+
+            <input type="submit" value="Login">
+            <a href="/register" class="register-link">Chưa có tài khoản?, đăng ký tại đây</a>
+        </form>
+    </div>
+
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const showPassword = document.querySelector(".show-password");
+
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                showPassword.textContent = "Hiện";
+            } else {
+                passwordInput.type = "password";
+                showPassword.textContent = "Ẩn";
+            }
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Sử dụng Ajax để gửi yêu cầu POST đến Flask
+            fetch('/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({username: username, password: password}),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Xử lý phản hồi từ Flask (nếu cần)
+                console.log(data);
+                if (data.success) {
+                    alert('Login successful');
+                } else {
+                    alert('Login failed. ' + data.message);
+                }
+            })
+            .catch(error => {
+                // Xử lý lỗi (nếu có)
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
