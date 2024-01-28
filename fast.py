@@ -1,11 +1,17 @@
-from fastapi import FastAPI, HTTPException, Request
-from fastapi.responses import HTMLResponse, JSONResponse
-from fastapi.templating import Jinja2Templates
-import random
-import time
-from datetime import datetime
-from threading import Thread
-import json
+import os
+while True:
+    try:
+        from fastapi import FastAPI, HTTPException, Request
+        from fastapi.responses import HTMLResponse, JSONResponse
+        from fastapi.templating import Jinja2Templates
+        import random
+        import time
+        from datetime import datetime
+        from threading import Thread
+        import json
+        break
+    except:
+        os.system('pip install fastapi uvicorn')
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
