@@ -8,7 +8,6 @@ try:
     from datetime import datetime
     from threading import Thread
     import json
-    break
 except:
     os.system('pip install fastapi uvicorn')
 
